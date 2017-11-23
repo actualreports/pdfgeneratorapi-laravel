@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "247b14431282ca8adbf290e0efc72def",
+    "content-hash": "9e54f3073c01d4e3d9013c0eb71a872a",
     "packages": [
         {
             "name": "actualreports/pdfgeneratorapi-php",
-            "version": "v1.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/actualreports/pdfgeneratorapi-php.git",
-                "reference": "a4170c0bcd51bcbb68e1cbb13c8099d206ecec64"
+                "reference": "6cfcc046117a2c4f7f0b6d7067f081014e0a5413"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/actualreports/pdfgeneratorapi-php/zipball/a4170c0bcd51bcbb68e1cbb13c8099d206ecec64",
-                "reference": "a4170c0bcd51bcbb68e1cbb13c8099d206ecec64",
+                "url": "https://api.github.com/repos/actualreports/pdfgeneratorapi-php/zipball/6cfcc046117a2c4f7f0b6d7067f081014e0a5413",
+                "reference": "6cfcc046117a2c4f7f0b6d7067f081014e0a5413",
                 "shasum": ""
             },
             "require": {
@@ -33,11 +33,7 @@
                     "ActualReports\\PDFGeneratorAPI\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "ActualReports\\PDFGeneratorAPI\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -51,13 +47,9 @@
             "description": "PHP API wrapper for pdfgeneratorapi.com",
             "homepage": "https://pdfgeneratorapi.com",
             "keywords": [
-                "pdf generator"
+                "PDF GENERATOR"
             ],
-            "support": {
-                "source": "https://github.com/actualreports/pdfgeneratorapi-php/tree/v1.0",
-                "issues": "https://github.com/actualreports/pdfgeneratorapi-php/issues"
-            },
-            "time": "2017-11-21T10:39:16+00:00"
+            "time": "2017-11-23T18:32:22+00:00"
         },
         {
             "name": "doctrine/inflector",

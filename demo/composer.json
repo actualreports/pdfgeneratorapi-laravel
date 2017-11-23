@@ -55,12 +55,5 @@
             "@php artisan ide-helper:meta",
             "@php artisan optimize"
         ]
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/actualreports/pdfgeneratorapi-laravel"
-        }
-    ],
-    "prefer-stable": true
+    }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "37179d8a78897ffcff09753759f14bd9",
+    "content-hash": "9a5601ef4c45864be41a1c26d11a288a",
     "packages": [
         {
             "name": "actualreports/pdfgeneratorapi-laravel",
@@ -85,16 +85,16 @@
         },
         {
             "name": "actualreports/pdfgeneratorapi-php",
-            "version": "v1.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/actualreports/pdfgeneratorapi-php.git",
-                "reference": "a4170c0bcd51bcbb68e1cbb13c8099d206ecec64"
+                "reference": "6cfcc046117a2c4f7f0b6d7067f081014e0a5413"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/actualreports/pdfgeneratorapi-php/zipball/a4170c0bcd51bcbb68e1cbb13c8099d206ecec64",
-                "reference": "a4170c0bcd51bcbb68e1cbb13c8099d206ecec64",
+                "url": "https://api.github.com/repos/actualreports/pdfgeneratorapi-php/zipball/6cfcc046117a2c4f7f0b6d7067f081014e0a5413",
+                "reference": "6cfcc046117a2c4f7f0b6d7067f081014e0a5413",
                 "shasum": ""
             },
             "require": {
@@ -110,11 +110,7 @@
                     "ActualReports\\PDFGeneratorAPI\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "ActualReports\\PDFGeneratorAPI\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -128,13 +124,9 @@
             "description": "PHP API wrapper for pdfgeneratorapi.com",
             "homepage": "https://pdfgeneratorapi.com",
             "keywords": [
-                "pdf generator"
+                "PDF GENERATOR"
             ],
-            "support": {
-                "source": "https://github.com/actualreports/pdfgeneratorapi-php/tree/v1.0",
-                "issues": "https://github.com/actualreports/pdfgeneratorapi-php/issues"
-            },
-            "time": "2017-11-21T10:39:16+00:00"
+            "time": "2017-11-23T18:32:22+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2698,16 +2690,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.1.13",
+            "version": "2.1.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "9f640a4f129e57d3537887f840380109a4dd182b"
+                "reference": "c6081b8838686aa04f1e83ba7e91f78b7b2a23e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/9f640a4f129e57d3537887f840380109a4dd182b",
-                "reference": "9f640a4f129e57d3537887f840380109a4dd182b",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/c6081b8838686aa04f1e83ba7e91f78b7b2a23e6",
+                "reference": "c6081b8838686aa04f1e83ba7e91f78b7b2a23e6",
                 "shasum": ""
             },
             "require": {
@@ -2755,7 +2747,7 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2017-11-17T08:15:51+00:00"
+            "time": "2017-11-23T18:22:44+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -4375,7 +4367,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
-    "prefer-stable": true,
+    "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.0.0"
