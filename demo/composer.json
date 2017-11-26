@@ -6,7 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
-        "actualreports/pdfgeneratorapi-laravel": "v0.1",
+        "actualreports/pdfgeneratorapi-laravel": "^1.0",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0"
