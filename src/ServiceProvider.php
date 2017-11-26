@@ -22,7 +22,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             __DIR__.'/../assets/js' => resource_path('assets/vendor/pdfgeneratorapi'),
         ], 'public');
 
-        $this->loadRoutesFrom(__DIR__.'/../routes/templates.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes/routes.php');
     }
 
     /**
@@ -31,7 +31,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         $this->app->singleton('pdfgeneratorapi', function ($app) {
-            $client = new \ActualReports\PDFGeneratorAPI\Client(
+            $client = new \ActualReports\PDFGeneratorAPILaravel\Services\PDFGeneratorAPI(
                 config('pdfgeneratorapi.key'),
                 config('pdfgeneratorapi.secret'),
                 config('pdfgeneratorapi.default_workspace')
@@ -41,5 +41,13 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
             return $client;
         });
+
+        /**
+         * Bind data repository contract and implementation
+         */
+        $this->app->bind(
+            'ActualReports\PDFGeneratorAPILaravel\Contracts\DataRepository',
+            'ActualReports\PDFGeneratorAPILaravel\Repositories\DataRepository'
+        );
     }
 }

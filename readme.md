@@ -52,7 +52,19 @@ php artisan storage:link
 We have included the javascript interface that makes calls to routes defined below and displays the result in browser.
 If you need more flexibility you can create your own front end interface that use the routes. 
 
-Currently you need to send the data from front end, but you may also extend the package's TemplateController and override the "getData" method to implement your own data source. 
+### Data Repository
+The main controller depends on ActualReports\PDFGeneratorAPILaravel\Repositories\DataRepository to get the data that is sent to PDF Generator service. 
+By default the data repository looks for the "data" parameter in request using Input::get('data').
+
+You can add your own DataRepository by implementing interface ActualReports\PDFGeneratorAPILaravel\Contracts\DataRepository and overriding the binding
+in your AppServiceProvider.php register() function.
+
+```php
+$this->app->bind(
+    'ActualReports\PDFGeneratorAPILaravel\Contracts\DataRepository',
+    'App\Repositories\DataRepository'
+);
+```
 
 ### Routes
 Available routes
