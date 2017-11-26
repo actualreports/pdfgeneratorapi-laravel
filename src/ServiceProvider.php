@@ -32,7 +32,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $this->app->singleton('pdfgeneratorapi', function ($app) {
             $client = new \ActualReports\PDFGeneratorAPI\Client(
-                config('pdfgeneratorapi.token'),
+                config('pdfgeneratorapi.key'),
                 config('pdfgeneratorapi.secret'),
                 config('pdfgeneratorapi.default_workspace')
             );
