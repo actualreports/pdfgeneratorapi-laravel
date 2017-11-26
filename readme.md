@@ -35,7 +35,7 @@ php artisan vendor:publish --provider="ActualReports\PDFGeneratorAPILaravel\Serv
 
 Add configuration to your .env file
 ```dotenv
-PDF_GENERATOR_TOKEN={YOUR_API_TOKEN}
+PDF_GENERATOR_KEY={YOUR_API_KEY}
 PDF_GENERATOR_SECRET={YOUR_API_SECRET}
 PDF_GENERATOR_USE_DATA_URL=true
 ```

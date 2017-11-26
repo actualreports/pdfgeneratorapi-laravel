@@ -1,6 +1,6 @@
 <?php
 return [
-    'token' => env('PDF_GENERATOR_TOKEN'),
+    'key' => env('PDF_GENERATOR_KEY'),
     'secret' => env('PDF_GENERATOR_SECRET'),
     'base_url' => env('PDF_GENERATOR_BASE_URL', 'https://pdfgeneratorapi.com/api/v3/'),
     'default_workspace' => env('PDF_GENERATOR_DEFAULT_WORKSPACE'),
