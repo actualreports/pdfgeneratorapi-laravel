@@ -27,9 +27,8 @@ class AppServiceProvider extends ServiceProvider
          * Override the binding for data repository contract and implementation
          */
         $this->app->bind(
-            'ActualReports\PDFGeneratorAPILaravel\Contracts\DataRepository',
-            'App\Repositories\DataRepository'
+            \ActualReports\PDFGeneratorAPILaravel\Contracts\DataRepository::class,
+            \App\Repositories\DataRepository::class
         );
-
     }
 }

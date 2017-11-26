@@ -46,8 +46,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
          * Bind data repository contract and implementation
          */
         $this->app->bind(
-            'ActualReports\PDFGeneratorAPILaravel\Contracts\DataRepository',
-            'ActualReports\PDFGeneratorAPILaravel\Repositories\DataRepository'
+            \ActualReports\PDFGeneratorAPILaravel\Contracts\DataRepository::class,
+            \ActualReports\PDFGeneratorAPILaravel\Repositories\DataRepository::class
         );
     }
 }
