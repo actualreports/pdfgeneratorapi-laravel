@@ -4,8 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "14151687dbc572e7921612e057334385",
+    "content-hash": "362613821ea3b01c527fe1ec2990ce6e",
     "packages": [
+        {
+            "name": "actualreports/pdfgeneratorapi-php",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/actualreports/pdfgeneratorapi-php.git",
+                "reference": "ff886292e8de8fdab2070653d95e878048d47122"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/actualreports/pdfgeneratorapi-php/zipball/ff886292e8de8fdab2070653d95e878048d47122",
+                "reference": "ff886292e8de8fdab2070653d95e878048d47122",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3",
+                "php": "^5.6 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ActualReports\\PDFGeneratorAPI\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tanel Tähepõld",
+                    "email": "taneltahepold@gmail.com",
+                    "homepage": "https://github.com/tanelt"
+                }
+            ],
+            "description": "PHP API wrapper for pdfgeneratorapi.com",
+            "homepage": "https://pdfgeneratorapi.com",
+            "keywords": [
+                "PDF GENERATOR"
+            ],
+            "time": "2017-11-26T15:09:21+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",

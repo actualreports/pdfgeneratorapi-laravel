@@ -7,6 +7,7 @@ namespace ActualReports\PDFGeneratorAPILaravel\Http\Controllers;
 
 use \ActualReports\PDFGeneratorAPI\Client as APIClient;
 use ActualReports\PDFGeneratorAPI\Exception;
+use ActualReports\PDFGeneratorAPILaravel\Contracts\DataRepository;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -19,8 +20,20 @@ class TemplateController extends Controller
     const OUTPUT_DOWNLOAD = 'download';
     const OUTPUT_PRINT = 'print';
 
-    protected $dataFolder = 'pdfgenerator';
-    protected $publicStorageFolder = 'storage';
+    /**
+     * @var \ActualReports\PDFGeneratorAPILaravel\Contracts\DataRepository
+     */
+    protected $repository;
+
+    /**
+     * TemplateController constructor.
+     *
+     * @param \ActualReports\PDFGeneratorAPILaravel\Contracts\DataRepository $repository
+     */
+    public function __construct(DataRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
      * @param \Illuminate\Http\Request $request
@@ -168,60 +181,8 @@ class TemplateController extends Controller
         return redirect()->away(\PDFGeneratorAPI::editor($newTemplate->id, $data));
     }
 
-    /**
-     * @return bool
-     */
-    protected function useDataUrl()
-    {
-        return config('pdfgeneratorapi.use_data_url');
-    }
-
-    /**
-     * Saves a temporary json file and generates public url that is sent to PDF Generator service
-     *
-     * @param array|\stdClass $data
-     * @return string
-     */
-    protected function getDataUrl($data)
-    {
-        /**
-         * If data is already an url don't save new file
-         */
-        if ($data && !filter_var($data, FILTER_VALIDATE_URL) !== false)
-        {
-            if(!is_string($data))
-            {
-                $data = \GuzzleHttp\json_encode($data);
-            }
-            $identifier = Auth::guest() ? time() : Auth::id();
-            $file = $this->dataFolder.DIRECTORY_SEPARATOR.md5($identifier).'.json';
-            Storage::disk('public')->put($file, $data);
-
-            $data =  asset($this->publicStorageFolder.DIRECTORY_SEPARATOR.$file);
-        }
-
-        return $data;
-    }
-
-    /**
-     * Override to implement your own data source
-     * @return array|mixed|string
-     */
     protected function getData()
     {
-        $data = Input::get('data');
-
-        if (!$data)
-        {
-            $data = ['dummy' => 'data'];
-        }
-
-        if ($this->useDataUrl())
-        {
-            $data = $this->getDataUrl($data);
-        }
-
-        return $data;
+        return $this->repository->get();
     }
-
 }
