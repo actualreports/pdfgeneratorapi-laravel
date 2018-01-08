@@ -46,7 +46,14 @@ $(() => {
     });
   };
 
+  /**
+   * Initialize PDG Generator API
+   */
   PDFGeneratorAPI.init();
+
+  /**
+   * Load initial templates
+   */
   loadTemplates();
 
   /**

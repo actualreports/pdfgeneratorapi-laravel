@@ -25,18 +25,17 @@ export default class PDFGeneratorAPI {
 
   init ()
   {
-    this.createIFrame();
-
-    let token = document.head.querySelector('meta[name="csrf-token"]');
-
+    let token = $('meta[name="csrf-token"]');
     if (token)
     {
-      this.csrfToken = token.content;
+      this.csrfToken = token.attr('content');
     }
     else
-      {
+    {
       console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
     }
+
+    this.createIFrame();
   }
 
   list ()
@@ -130,7 +129,6 @@ export default class PDFGeneratorAPI {
     }, {
       name: newName
     });
-    console.log(route);
     return this.openEditor(route, data);
   }
 
@@ -212,6 +210,11 @@ export default class PDFGeneratorAPI {
   {
     let iFrameTarget = $('body');
     let iFrameId = _.uniqueId('iframe-');
+    let tokenInput = $(document.createElement('input')).attr({
+      type: 'hidden',
+      name: '_token',
+      value: this.csrfToken
+    });
 
     this.iFrame = $(document.createElement('iframe')).attr({
       id: iFrameId,
@@ -225,18 +228,14 @@ export default class PDFGeneratorAPI {
       })
       .css({
         display: 'none'
-      })
-      .append($(document.createElement('input')).attr({
-        type: 'hidden',
-        name: '_token',
-        value: this.csrfToken
-      }));
+      });
 
     this.iFrameFormData = $(document.createElement('textarea'))
       .attr('name', 'data')
       .appendTo(this.iFrameForm);
 
     this.iFrameForm.appendTo(iFrameTarget);
+    this.iFrameForm.append(tokenInput);
   }
 
   /**

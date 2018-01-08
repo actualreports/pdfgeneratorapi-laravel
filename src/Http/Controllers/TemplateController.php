@@ -8,6 +8,7 @@ namespace ActualReports\PDFGeneratorAPILaravel\Http\Controllers;
 use \ActualReports\PDFGeneratorAPI\Client as APIClient;
 use ActualReports\PDFGeneratorAPI\Exception;
 use ActualReports\PDFGeneratorAPILaravel\Contracts\DataRepository;
+use ActualReports\PDFGeneratorAPILaravel\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -24,15 +25,18 @@ class TemplateController extends Controller
      * @var \ActualReports\PDFGeneratorAPILaravel\Contracts\DataRepository
      */
     protected $repository;
+    protected $userRepository;
 
     /**
      * TemplateController constructor.
      *
      * @param \ActualReports\PDFGeneratorAPILaravel\Contracts\DataRepository $repository
+     * @param \ActualReports\PDFGeneratorAPILaravel\Repositories\UserRepository $userRepository
      */
-    public function __construct(DataRepository $repository)
+    public function __construct(DataRepository $repository, UserRepository $userRepository)
     {
         $this->repository = $repository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -42,8 +46,12 @@ class TemplateController extends Controller
      */
     public function getAll(Request $request)
     {
-        $templates = collect(\PDFGeneratorAPI::getAll());
+        /**
+         * Set workspace identifier
+         */
+        \PDFGeneratorAPI::setWorkspace($this->userRepository->getWorkspaceIdentifier(Auth::user()));
 
+        $templates = collect(\PDFGeneratorAPI::getAll());
         return response()->json([
             'private' => $templates->filter(function($t) {
                 return $t->owner;
@@ -64,6 +72,11 @@ class TemplateController extends Controller
     {
         try
         {
+            /**
+             * Set workspace identifier
+             */
+            \PDFGeneratorAPI::setWorkspace($this->userRepository->getWorkspaceIdentifier(Auth::user()));
+
             $template = \PDFGeneratorAPI::get($template);
         }
         catch(Exception $e)
@@ -99,6 +112,11 @@ class TemplateController extends Controller
 
         try
         {
+            /**
+             * Set workspace identifier
+             */
+            \PDFGeneratorAPI::setWorkspace($this->userRepository->getWorkspaceIdentifier(Auth::user()));
+
             $result = \PDFGeneratorAPI::output($template, $data, $format, $name, $params);
         }
         catch(Exception $e)
@@ -139,6 +157,11 @@ class TemplateController extends Controller
     {
         $data = $this->getData();
 
+        /**
+         * Set workspace identifier
+         */
+        \PDFGeneratorAPI::setWorkspace($this->userRepository->getWorkspaceIdentifier(Auth::user()));
+
         return redirect()->away(\PDFGeneratorAPI::editor($template, $data));
     }
 
@@ -150,6 +173,11 @@ class TemplateController extends Controller
     public function openNew(Request $request)
     {
         $data = $this->getData();
+
+        /**
+         * Set workspace identifier
+         */
+        \PDFGeneratorAPI::setWorkspace($this->userRepository->getWorkspaceIdentifier(Auth::user()));
 
         return redirect()->away(\PDFGeneratorAPI::editor(null, $data));
     }
@@ -169,6 +197,11 @@ class TemplateController extends Controller
 
         try
         {
+            /**
+             * Set workspace identifier
+             */
+            \PDFGeneratorAPI::setWorkspace($this->userRepository->getWorkspaceIdentifier(Auth::user()));
+
             $newTemplate = \PDFGeneratorAPI::copy($template, $name);
         }
         catch(Exception $e)

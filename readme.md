@@ -66,6 +66,19 @@ $this->app->bind(
 );
 ```
 
+### User Repository
+The main controller depends on `ActualReports\PDFGeneratorAPILaravel\Repositories\UserRepository` to generate unique workspace identifier for logged in user.
+
+You can add your own UserRepository by implementing interface `ActualReports\PDFGeneratorAPILaravel\Contracts\UserRepository` and overriding the binding
+in your AppServiceProvider.php register() function.
+
+```php
+$this->app->bind(
+    'ActualReports\PDFGeneratorAPILaravel\Contracts\DataRepository',
+    'App\Repositories\DataRepository'
+);
+```
+
 ### Routes
 Available routes
 * pdfgenerator.templates.all: GET /pdfgenerator/templates
@@ -77,6 +90,11 @@ Available routes
 
 
 ### JavaScript interface
+Init javascript interface
+```javascript
+PDFGeneratorAPI.init();
+```
+
 Fetches list of available templates
 ```javascript
 PDFGeneratorAPI.list().then((response) => {
