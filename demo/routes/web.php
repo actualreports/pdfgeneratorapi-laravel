@@ -10,8 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     app('pdfgeneratorapi');
     return view('index');
+});
+
+Route::get('/login', function () {
+    Auth::loginUsingId(1, true);
+    dd(Auth::user());
 });

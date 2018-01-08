@@ -18077,6 +18077,7 @@ __webpack_require__(12);
 window.Vue = __webpack_require__(36);
 
 var PDFGeneratorAPI = new __WEBPACK_IMPORTED_MODULE_0__vendor_pdfgeneratorapi__["a" /* default */]();
+window.pdf = PDFGeneratorAPI;
 $(function () {
   var el = $('#pdf-generator-example');
   var templates = el.find('.templates');
@@ -18110,7 +18111,14 @@ $(function () {
     });
   };
 
+  /**
+   * Initialize PDG Generator API
+   */
   PDFGeneratorAPI.init();
+
+  /**
+   * Load initial templates
+   */
   loadTemplates();
 
   /**
@@ -31802,15 +31810,14 @@ var PDFGeneratorAPI = function () {
   _createClass(PDFGeneratorAPI, [{
     key: 'init',
     value: function init() {
-      this.createIFrame();
-
-      var token = document.head.querySelector('meta[name="csrf-token"]');
-
+      var token = $('meta[name="csrf-token"]');
       if (token) {
-        this.csrfToken = token.content;
+        this.csrfToken = token.attr('content');
       } else {
         console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
       }
+
+      this.createIFrame();
     }
   }, {
     key: 'list',
@@ -31915,7 +31922,6 @@ var PDFGeneratorAPI = function () {
       }, {
         name: newName
       });
-      console.log(route);
       return this.openEditor(route, data);
     }
   }, {
@@ -31999,6 +32005,11 @@ var PDFGeneratorAPI = function () {
     value: function createIFrame() {
       var iFrameTarget = $('body');
       var iFrameId = __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.uniqueId('iframe-');
+      var tokenInput = $(document.createElement('input')).attr({
+        type: 'hidden',
+        name: '_token',
+        value: this.csrfToken
+      });
 
       this.iFrame = $(document.createElement('iframe')).attr({
         id: iFrameId,
@@ -32010,15 +32021,12 @@ var PDFGeneratorAPI = function () {
         method: 'post'
       }).css({
         display: 'none'
-      }).append($(document.createElement('input')).attr({
-        type: 'hidden',
-        name: '_token',
-        value: this.csrfToken
-      }));
+      });
 
       this.iFrameFormData = $(document.createElement('textarea')).attr('name', 'data').appendTo(this.iFrameForm);
 
       this.iFrameForm.appendTo(iFrameTarget);
+      this.iFrameForm.append(tokenInput);
     }
 
     /**

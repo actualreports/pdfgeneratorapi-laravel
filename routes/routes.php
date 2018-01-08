@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'pdfgenerator', 'as' => 'pdfgeneratorapi', 'namespace' => 'ActualReports\PDFGeneratorAPILaravel\Http\Controllers'], function() {
+Route::group(['prefix' => 'pdfgenerator', 'as' => 'pdfgeneratorapi', 'namespace' => 'ActualReports\PDFGeneratorAPILaravel\Http\Controllers', 'middleware' => ['web']], function() {
     Route::group(['prefix' => 'templates', 'as' => '.templates'], function() {
         Route::get('', 'TemplateController@getAll')->name('all');
         Route::get('{template}', 'TemplateController@get')->name('get');
