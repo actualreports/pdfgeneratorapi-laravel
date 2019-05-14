@@ -37,6 +37,7 @@ Add configuration to your .env file
 ```dotenv
 PDF_GENERATOR_KEY={YOUR_API_KEY}
 PDF_GENERATOR_SECRET={YOUR_API_SECRET}
+PDF_GENERATOR_BASE_URL=https://us1.pdfgeneratorapi.com/api/v3/
 PDF_GENERATOR_USE_DATA_URL=true
 ```
 If "PDF_GENERATOR_USE_DATA_URL" is set to true then we send an url to your data file instead of sending the data in request body.

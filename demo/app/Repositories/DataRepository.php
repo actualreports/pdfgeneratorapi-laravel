@@ -24,8 +24,6 @@ class DataRepository extends \ActualReports\PDFGeneratorAPILaravel\Repositories\
 
     public function getRawData()
     {
-        $data = \GuzzleHttp\json_decode(parent::getRawData());
-        $data[0]->DocNumber = 'IE123121';
-        return $data;
+        return parent::getRawData();
     }
 }
